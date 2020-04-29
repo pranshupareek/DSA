@@ -1,4 +1,8 @@
+import math
+
 MAX_CHAR = 256
+
+# First occurrence of Repeated or Non repeated string
 # def frc(s):
 #     p = -1
 #     st = [0 for i in range(MAX_CHAR)]
@@ -19,9 +23,11 @@ MAX_CHAR = 256
 #             elif(p>pos[i]):
 #                 p = pos[i]
 #     return p
-# ab="pranshupareekp"
+# ab="pranshupareek"
 # ind=frc(ab)
 # print(ab[ind])
+
+#Find Lexicographic Rank
 
 def lexr(arr):
     count=[0 for i in range(MAX_CHAR)]
@@ -29,4 +35,13 @@ def lexr(arr):
         count[ord(arr[i])]+=1
     for i in range(MAX_CHAR):
         count[i]=count[i-1]+count[i]
+    lenn=0
+    j=0
+    for i in range(MAX_CHAR):
+        if count[i]!=0:
+            lenn=lenn+j*math.factorial(count[i])
+            j+=1
+    return lenn
+a="string"
+lexr(a)
 
