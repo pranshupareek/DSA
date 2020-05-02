@@ -50,8 +50,7 @@ class LinkedList:
             else:
                 print()
 
-    def loopMaker(self, data, i=3):
-        vb = Node(data)
+    def loopMaker(self, i=3):
         temp = self.head
         temp2 = self.head
         while i:
@@ -59,8 +58,7 @@ class LinkedList:
             temp = temp.next
         while temp2.next:
             temp2 = temp2.next
-        temp2.next = vb
-        vb.next = temp
+        temp2.next = temp
 
     def ins(self, data):
         eti = Node(data)
@@ -77,14 +75,13 @@ class LinkedList:
 llist = LinkedList()
 n = int(input("Enter number of insertion "))
 print('Insert your data in link list')
-for i in range(n-1):
+for i in range(n):
     td = input()
     llist.ins(td)
 
 
 #Adding Loop
-td = input()
-llist.loopMaker(td,1)
+llist.loopMaker(2)
 #loop added successfully
 
 
