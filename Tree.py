@@ -35,9 +35,10 @@ def checkChilderSum(root):
     elif root.left==None and root.right==None:
         return True
     elif root.left==None and root.data==root.right.data:
-        return True
+        return checkChilderSum(root.right)
+
     elif root.right==None and root.data==root.left.data:
-        return True
+        return checkChilderSum(root.left)
     elif root.data==root.left.data+root.right.data:
         lc=checkChilderSum(root.left)
         rc=checkChilderSum(root.right)
