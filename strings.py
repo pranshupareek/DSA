@@ -1,3 +1,4 @@
+#**Most important for strings is KMP ALGO**
 #Permutaion of pattern exist
 def ifAnagramPresent(txt,pat):
     counttxtw=[0]*256
@@ -93,6 +94,6 @@ def rotck(str1,str2):
                 return True
     return False
 
-str1="abcd"
-str2="bcda"
-print(rotck(str1,str2))
+# str1="abcd"
+# str2="bcda"
+# print(rotck(str1,str2))
