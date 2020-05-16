@@ -1,3 +1,6 @@
+INT_MAX = 4294967296
+INT_MIN = -4294967296
+
 class node:
     def __init__(self,data):
         self.left=None
@@ -36,19 +39,23 @@ def checkChilderSum(root):
         return True
     elif root.left==None and root.data==root.right.data:
         return checkChilderSum(root.right)
-
     elif root.right==None and root.data==root.left.data:
         return checkChilderSum(root.left)
     elif root.data==root.left.data+root.right.data:
-        lc=checkChilderSum(root.left)
-        rc=checkChilderSum(root.right)
+        return checkChilderSum(root.left) and checkChilderSum(root.right)
     else:
         return False
-    if lc==False or rc==False:
-        return False
-    else:
-        return True
 
+def printNodesatlvlK(root,k):
+
+    if root==None:
+        return
+    if k==1:
+        print(root.data,end=' ')
+        return
+    else:
+        printNodesatlvlK(root.left,k-1)
+        printNodesatlvlK(root.right,k-1)
 
 def height(root):
     if root==None:
@@ -57,26 +64,46 @@ def height(root):
     rh=height(root.right)
     return max(lh,rh)+1
 
+def checkBST(root,minn=INT_MIN,maxx=INT_MAX):
+    if root is None:
+        return True
+
+    if root.data<minn or root.data>maxx:
+        return False
+
+    return checkBST(root.left,minn,root.data-1) and checkBST(root.right,root.data+1,maxx)
+
+
 #Driver code
 
-root = node(5)
-root.left=node(2)
-root.right=node(3)
-root.left.left=node(1)
-root.left.right=node(1)
-root.right.left=node(2)
-root.right.right=node(1)
-
+root = node(15)
+root.left=node(7)
+root.right=node(25)
+root.left.left=node(5)
+root.left.right=node(12)
+root.right.left=node(16)
+root.right.right=node(27)
+print('\nInorder: ',end="")
 printInorder(root)
-print()
+print('\nPostorder: ',end="")
 printPostorder(root)
-print()
+print('\nPreorder: ',end="")
 printPreorder(root)
 print()
 h=height(root)
-print(h)
+print('Height: ',h)
 
 if checkChilderSum(root):
-    print('Yes It follow children Sum')
+    print('Yes, It follow children Sum')
 else:
-    print('Noo')
+    print('Noo, It dont follow children Sum')
+
+print('Node lvl Element: ',end="")
+printNodesatlvlK(root,3)
+print()
+
+
+if checkBST(root):
+    print('yes, it is a BST')
+else:
+    print('Noo, it is not a BST')
